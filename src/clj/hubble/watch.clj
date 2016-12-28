@@ -16,5 +16,5 @@
   (info "watching on" path)
   (envoy/watch-path path #(on-change listener (keys %))))
 
-(defstate consul-watcher :start (watch-consul (str (config :consul) "/hubble"))
+(defstate consul-watcher :start (watch-consul (config :consul))
                          :stop (envoy/stop consul-watcher))
