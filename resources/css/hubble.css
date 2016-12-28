@@ -1,0 +1,75 @@
+body {
+    background-image: url("../img/night-sky.jpg");
+}
+
+.container {
+    margin-top: 7%;
+}
+
+.container img {
+    width: 100%;
+}
+
+.round img {     
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.recal {
+    border-radius: 10% !important;
+    margin-top: 78px;
+}
+
+.rounded-corners img {
+    border-radius: 5%;
+    overflow: hidden;
+}
+
+#space-log {
+    background-image: url("../img/space-log.png");
+    background-repeat: repeat-y;
+    border-radius: 10%;
+    overflow: hidden;
+    padding-left: 80px;
+    color: rgba(255, 228, 0, 0.93);
+    font-weight: 100;
+    font-size: 0.6em;
+    margin-top: 38px;
+    margin-left: 20px;
+    max-height: 380px;
+}
+
+.log-entry .ts {
+    margin-right: 5px;
+    color: rgba(255, 228, 0, 0.27);
+}
+
+#mission {
+    margin-left: 25px;
+}
+
+#mission img {
+    max-height: 450px;
+    min-height: 290px;
+}
+
+.component-name {
+    color: rgba(255, 255, 255, 0.56);
+    font-weight: 100;
+    font-size: 0.6em;
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+#store {
+    margin-top: 73px;
+    height: 119px;
+}
+
+#camera {
+    margin-top:50px;
+}
+
+.grayscale {
+    filter: grayscale(100%);
+}
