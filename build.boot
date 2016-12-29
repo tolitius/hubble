@@ -11,7 +11,9 @@
                  [ring                         "1.6.0-beta6"]
                  [rum                          "0.10.7"]
                  [mount                        "0.1.11"]
+                 [tolitius/mount-up            "0.1.0-SNAPSHOT"]
                  [tolitius/envoy               "0.1.1"]
+                 [chazel                       "0.1.12-SNAPSHOT"]
                  [robert/hooke                 "1.3.0"]
                  [org.clojure/tools.logging    "0.3.1"]
 
@@ -20,7 +22,7 @@
                  [adzerk/boot-cljs-repl        "0.3.3"           :scope "test"]
                  [adzerk/boot-reload           "0.4.13"          :scope "test"]
                  [pandeiro/boot-http           "0.7.2"           :scope "test"]
-                 [adzerk/boot-logservice       "1.0.1"           :scope "test"]
+                 [adzerk/boot-logservice       "1.2.0"           :scope "test"]
                  [com.cemerick/piggieback      "0.2.1"           :scope "test"]
                  [org.clojure/tools.nrepl      "0.2.12"          :scope "test"]
                  [weasel                       "0.7.0"           :scope "test"]

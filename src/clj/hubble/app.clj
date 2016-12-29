@@ -1,10 +1,10 @@
 (ns hubble.app
   (:require [mount.core :as mount :refer [defstate]]
+            [mount-up.core :refer [on-up on-upndown log]]
             [hubble.core]
             [hubble.consul :refer [init-consul]]
             [hubble.watch]
-            [hubble.server :refer [broadcast-to-clients! http-server]]
-            [hubble.utils.upndown :refer [on-up on-upndown log]])
+            [hubble.server :refer [broadcast-to-clients! http-server]])
   (:gen-class))  ;; for -main / uberjar (no need in dev)
 
 ;; example of an app entry point
