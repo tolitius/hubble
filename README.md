@@ -33,10 +33,11 @@ Hubble listens to Consul events via [envoy](https://github.com/tolitius/envoy):
 
 ```clojure
 (defn watch-consul [path]
-  (info "watching on" path)
-  (envoy/watch-path path #(on-change listener (keys %))))
+  (let [listener (add-watchers)]
+    (info "watching on" path)
+    (envoy/watch-path path #(on-change listener (keys %)))))
 
-(defstate consul-watcher :start (watch-consul (str (config :consul) "/hubble"))
+(defstate consul-watcher :start (watch-consul (config :consul))
                          :stop (envoy/stop consul-watcher))
 ```
 
@@ -49,8 +50,6 @@ and restarts _only those_ Hubble components that need to be restarted given the 
                   :hubble/camera/mode     [#'hubble.consul/config #'hubble.core/camera]
                   :hubble/store/url       [#'hubble.consul/config #'hubble.core/store]}]
     (mount/restart-listener watchers)))
-
-(defstate listener :start (add-watchers))
 ```
 
 Would **not** be great to shut down the whole Hubble "system" in case we need to swap a camera, right?
