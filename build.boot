@@ -11,10 +11,11 @@
                  [ring                         "1.6.0-beta6"]
                  [rum                          "0.10.7"]
                  [mount                        "0.1.11"]
+                 [cprop                        "0.1.9"]
                  [tolitius/mount-up            "0.1.0-SNAPSHOT"]
                  [tolitius/envoy               "0.1.1"]
+                 [counsyl/vault-clj            "0.2.0"]
                  [chazel                       "0.1.12-SNAPSHOT"]
-                 [robert/hooke                 "1.3.0"]
                  [org.clojure/tools.logging    "0.3.1"]
 
                  ;; dev / test 

@@ -9,7 +9,7 @@
             [mount.core :refer [defstate]]
             [hubble.core :refer [mission camera store]]
             [hubble.utils.transit :as transit]
-            [hubble.consul :refer [config]]))
+            [hubble.env :refer [config]]))
 
 (defn connect! [clients request]
   (hk/with-channel request channel
@@ -34,7 +34,7 @@
          (render "index.html"))
 
     (GET "/config" []
-         (str config))
+         (str (config)))
 
     (GET "/ws" [] (partial connect! clients))
 

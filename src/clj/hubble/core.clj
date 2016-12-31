@@ -1,6 +1,12 @@
 (ns hubble.core
   (:require [mount.core :refer [defstate]]
-            [hubble.consul :refer [config]]))
+            [hubble.env :refer [config]]))
+
+;; in reality these would be trully stateful components:
+;;    i.e. with a camera state
+;;         connection to a store
+;;         connection to a mission knowledge base
+;;          etc.
 
 (defstate camera :start {:on? true 
                          :settings (get-in config [:hubble :camera])}

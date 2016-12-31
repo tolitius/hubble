@@ -1,8 +1,8 @@
 (ns hubble.app
   (:require [mount.core :as mount :refer [defstate]]
-            [mount-up.core :refer [on-up on-upndown log]]
+            [mount-up.core :as register :refer [log]]
+            [hubble.env :as env]
             [hubble.core]
-            [hubble.consul :refer [init-consul]]
             [hubble.watch]
             [hubble.server :refer [broadcast-to-clients! http-server]])
   (:gen-class))  ;; for -main / uberjar (no need in dev)
@@ -11,11 +11,11 @@
 (defn -main [& args]
 
   ;; registering "log" to "info" ":before" every time mount states start and stop
-  (on-upndown :info log :before)
+  (register/on-upndown :info log :before)
 
-  (init-consul "resources/config.edn")  ;; in reality this would be already in consul (i.e. no need)
+  (env/init-consul)   ;; in "reality" data would already be in consul (i.e. no need to init)
   (mount/start)
 
   ;; registering "notify" to notify browser clients :after every state start
-  (on-up :push #(broadcast-to-clients! http-server %)
-         :after))
+  (register/on-up :push #(broadcast-to-clients! http-server %)
+                  :after))

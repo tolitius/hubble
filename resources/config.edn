@@ -1,7 +1,18 @@
-{:consul {:host "http://localhost:8500"
-          :kv-prefix "/v1/kv"
-          :app-path "/hubble"}
- :hubble {:server {:port 4242}
+{:hubble {:server {:port 4242}
           :store {:url "spacecraft://tape"}
           :camera {:mode "mono"}
-          :mission {:target "Eagle Nebula"}}}
+          :mission {:target "Eagle Nebula"}
+
+          :audit {:enabled false                            ;; can be overriden as anything else at startup / runtime
+                  :auth-token "OVERRIDE ME"
+                  :hazelcast {:hosts "OVERRIDE ME"
+                              :group-name "OVERRIDE ME"
+                              :group-password "OVERRIDE ME"
+                              :retry-ms 5000
+                              :retry-max 720000}}}
+
+ :vault {:host "OVERRIDE ME"}
+
+ :consul {:host "http://localhost:8500"                     ;; could be passed as -D / ENV
+          :kv-prefix "/v1/kv"
+          :app-path "/hubble"}}
