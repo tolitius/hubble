@@ -11,7 +11,11 @@
                                                  (from-env)])
                             (consul/merge-config [:consul])))
 
-
+(defn with-mission-log-creds [conf path]
+  (-> (vault/merge-config conf {:at path
+                                :vhost [:hubble :vault :url]
+                                :token [:hubble :log :auth-token]})
+      (get-in path)))
 
 
 ;; playground
@@ -25,6 +29,7 @@
                    kv :kv-prefix} :consul :as conf} (load-config)
         cpath (str host kv)]
     (as-> (dissoc conf :consul) $
-      (update-in $ [:hubble :audit] dissoc :auth-token)
-      (update-in $ [:hubble :audit :hazelcast] dissoc :group-name :group-password)
+      (update-in $ [:hubble :log] dissoc :auth-token)
+      (update-in $ [:hubble :log :hazelcast] dissoc :group-name
+                                                    :group-password)
       (envoy/map->consul cpath $))))

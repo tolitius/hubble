@@ -3,15 +3,17 @@
           :camera {:mode "mono"}
           :mission {:target "Eagle Nebula"}
 
-          :audit {:enabled false                            ;; can be overriden as anything else at startup / runtime
-                  :auth-token "OVERRIDE ME"
-                  :hazelcast {:hosts "OVERRIDE ME"
-                              :group-name "OVERRIDE ME"
-                              :group-password "OVERRIDE ME"
-                              :retry-ms 5000
-                              :retry-max 720000}}}
+          :log {:enabled false                              ;; can be overriden as anything else at startup / runtime
+                :auth-token "OVERRIDE ME"
+                :name "hubble-log"
+                :hazelcast {:hosts "OVERRIDE ME"
+                            :group-name "OVERRIDE ME"
+                            :group-password "OVERRIDE ME"
+                            :retry-ms 5000
+                            :retry-max 720000}}
 
- :vault {:host "OVERRIDE ME"}
+          :vault {:url "OVERRIDE ME"}}
+
 
  :consul {:host "http://localhost:8500"                     ;; could be passed as -D / ENV
           :kv-prefix "/v1/kv"
