@@ -13,7 +13,7 @@
                  [mount                        "0.1.11"]
                  [cprop                        "0.1.9"]
                  [tolitius/mount-up            "0.1.0-SNAPSHOT"]
-                 [tolitius/envoy               "0.1.1"]
+                 [tolitius/envoy               "0.1.2-SNAPSHOT"]
                  [counsyl/vault-clj            "0.2.0"]
                  [chazel                       "0.1.12-SNAPSHOT"]
                  [org.clojure/tools.logging    "0.3.1"]

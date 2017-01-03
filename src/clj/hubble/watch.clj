@@ -2,7 +2,7 @@
   (:require [envoy.core :as envoy]
             [clojure.tools.logging :refer [info]]
             [mount.core :as mount :refer [defstate add-watcher on-change]]
-            [hubble.env :refer [config]]))
+            [hubble.env :as env]))
 
 (defn add-watchers []
   (let [watchers {:hubble/mission/target  [#'hubble.env/config #'hubble.core/mission]
@@ -15,6 +15,6 @@
     (info "watching on" path)
     (envoy/watch-path path #(on-change listener (keys %)))))
 
-(defstate consul-watcher :start (watch-consul (apply str (vals                   ;; {:host "http://localhost:8500", :kv-prefix "/v1/kv", :app-path "/hubble"}
-                                                           (config :consul))))   ;; to "http://localhost:8500/v1/kv/hubble"
+(defstate consul-watcher :start (watch-consul (env/to-consul-path
+                                                (env/config :consul)))
                          :stop (envoy/stop consul-watcher))

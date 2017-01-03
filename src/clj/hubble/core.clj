@@ -22,15 +22,17 @@
                           :details (get-in env/config [:hubble :mission])}
                   :stop {:active false})
 
-(defstate mission-log :start (hz/client-instance (env/with-mission-log-creds env/config
-                                                                             [:hubble :log :hazelcast]))
+
+;; hubble mission log
+
+(defstate mission-log :start (hz/client-instance (env/with-creds env/config
+                                                                 [:hubble :log :hazelcast]
+                                                                 [:hubble :log :auth-token]))
                       :stop (hz/shutdown-client mission-log))
 
 (defn document! [log {:keys [name] :as event}]
-  (let [event (if (= name "#'hubble.env/config")
-                (update event :state :hubble)    ;; don't log _full OS_ env on every change
-                event)]
+  (when-not (= name "#'hubble.env/config")   ;; remove conf for the demo
     (hz/put! log
-             (dt/str-now (dt/current-utc-millis)) event
+             (dt/current-utc-millis) event
              ser/transit-out)))
 

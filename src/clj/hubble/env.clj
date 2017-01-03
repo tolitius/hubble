@@ -4,18 +4,32 @@
             [cprop.source :refer [from-system-props 
                                   from-env]]
             [envoy.core :as envoy]
-            [hubble.tools.vault :as vault]
-            [hubble.tools.consul :as consul]))
+            [hubble.tools.vault :as vault]))
 
-(defstate config :start (-> (load-config :merge [(from-system-props)
-                                                 (from-env)])
-                            (consul/merge-config [:consul])))
+(defn to-consul-path
+  "consul config to 'host/kv-prefix/path'"
+  [cconf]
+  (->> cconf
+       vals
+       (apply str)))
 
-(defn with-mission-log-creds [conf path]
-  (-> (vault/merge-config conf {:at path
+(defn with-creds [conf at token]
+  (-> (vault/merge-config conf {:at at
                                 :vhost [:hubble :vault :url]
-                                :token [:hubble :log :auth-token]})
-      (get-in path)))
+                                :token token})
+      (get-in at)))
+
+(defn create-config []
+  (let [conf (load-config :merge [(from-system-props)
+                                  (from-env)])]
+    (->> (conf :consul)
+         to-consul-path
+         (envoy/merge-with-consul conf))))
+
+(defstate config :start (create-config))
+
+
+
 
 
 ;; playground

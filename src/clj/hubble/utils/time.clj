@@ -19,12 +19,11 @@
         (.toInstant)
         (.toEpochMilli))))
 
-(defn str-now [ts]
-  (if-let [timestamp (Longs/tryParse (str ts))]
-    (-> (ZonedDateTime/ofInstant
-          (Instant/ofEpochMilli timestamp)
-          (ZoneId/of "UTC"))
-        (.format (DateTimeFormatter/ofPattern "yyyy-MM-dd HH:mm:ss.SSS")))))
+(defn str-now []
+  (-> (ZonedDateTime/ofInstant
+        (Instant/ofEpochMilli (current-utc-millis))
+        (ZoneId/of "UTC"))
+      (.format (DateTimeFormatter/ofPattern "yyyy-MM-dd HH:mm:ss.SSS"))))
 
 (defn ms-to-hours [ms]
   (when ms
