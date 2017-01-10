@@ -17,5 +17,4 @@
 
  :consul {:host "http://localhost:8500"                     ;; could be passed as -D / ENV
           :kv-prefix "/v1/kv"
-          :app-path "/hubble"
-          :init false}}
+          :app-path "/hubble"}}

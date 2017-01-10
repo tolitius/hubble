@@ -37,6 +37,8 @@
  '[adzerk.boot-logservice :as log-service]
  '[clojure.tools.logging :as log]
  '[crisptrutski.boot-cljs-test :refer [test-cljs]]
+
+ '[hubble.env :as env]
  '[hubble.app :as app])
 
 (def log4b
@@ -75,9 +77,10 @@
   (comp (development)
         (repl)))
 
-(deftask up [i init-consul bool "if true, Hubble will initialize Consul with its default config"]
-  (when init-consul
-    (System/setProperty "consul_init" "true"))
+(deftask init-consul []
+  (env/init-consul))
+
+(deftask up []
   (comp (development)
         (run)))
 
