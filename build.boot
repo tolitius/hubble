@@ -75,7 +75,9 @@
   (comp (development)
         (repl)))
 
-(deftask up []
+(deftask up [i init-consul bool "if true, Hubble will initialize Consul with its default config"]
+  (when init-consul
+    (System/setProperty "consul_init" "true"))
   (comp (development)
         (run)))
 

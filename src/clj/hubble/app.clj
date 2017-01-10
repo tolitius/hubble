@@ -22,8 +22,6 @@
   ;; registering "log" to "info" ":before" every time mount states start and stop
   (register/on-upndown :info log :before)
 
-  ;; (env/init-consul)   ;; in "reality" data would already be in consul (i.e. no need to init)
-
   ;; start without a mission log by default
   (mount/start-without #'hubble.core/mission-log)
  
@@ -32,6 +30,10 @@
                                        [:hubble :log])]
     (when enabled
       (add-mission-log name)))
+
+  ;; in "reality" data would already be in consul (i.e. no need to init)
+  (when (get-in env/config [:consul :init])
+    (env/init-consul))
 
   ;; registering "notify" to notify browser clients :after every state start
   (register/on-up :notify-clients #(broadcast-to-clients! http-server %)

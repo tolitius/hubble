@@ -4,6 +4,7 @@
             [cprop.source :refer [from-system-props 
                                   from-env]]
             [envoy.core :as envoy]
+            [clojure.tools.logging :as log]
             [hubble.tools.vault :as vault]))
 
 (defn to-consul-path
@@ -42,6 +43,7 @@
   (let [{:keys [] {host :host
                    kv :kv-prefix} :consul :as conf} (load-config)
         cpath (str host kv)]
+    (log/info "initializing Consul at" cpath)
     (as-> (dissoc conf :consul) $
       (update-in $ [:hubble :log] dissoc :auth-token)
       (update-in $ [:hubble :log :hazelcast] dissoc :group-name
