@@ -1,0 +1,4 @@
+{:hubble {:log {:enabled true
+                :hazelcast {:hosts ["127.0.0.1"]}}
+
+          :vault {:url "http://127.0.0.1:8200"}}}

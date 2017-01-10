@@ -66,6 +66,7 @@
   identity)
 
 (deftask development []
+  (set-env! :resource-paths #(conj % "dev-resources"))
   (task-options! cljs {:optimizations :none :source-map true}
                  reload {:on-jsload 'hubble.app/init})
 
