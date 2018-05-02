@@ -83,6 +83,10 @@ In fact it does for many years now. Meet [SPIKE: Intelligent Scheduling of Hubbl
 
 > Updating for new Lisp language features has not been difficult, and there are currently no plans to convert any of the system to C or C++
 
+## How do I set all this up?
+
+Here are the [detailed instructions](https://www.dotkam.com/2017/01/10/hubble-space-mission-securely-configured/) on how to connect to and control the Hubble Telescope.
+
 ## License
 
 Copyright © 2016 tolitius

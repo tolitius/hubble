@@ -11,7 +11,7 @@
 ;;         connection to a mission knowledge base
 ;;         etc.
 
-(defstate camera :start {:on? true 
+(defstate camera :start {:on? true
                          :settings (get-in env/config [:hubble :camera])}
                  :stop {:on? false})
 

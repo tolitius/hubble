@@ -24,7 +24,7 @@
 
   ;; start without a mission log by default
   (mount/start-without #'hubble.core/mission-log)
- 
+
   ;; in case the mission log is enabled, add it to the app
   (let [{:keys [enabled name]} (get-in env/config
                                        [:hubble :log])]

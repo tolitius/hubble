@@ -1,7 +1,7 @@
 (ns hubble.env
   (:require [mount.core :refer [defstate]]
             [cprop.core :refer [load-config]]
-            [cprop.source :refer [from-system-props 
+            [cprop.source :refer [from-system-props
                                   from-env]]
             [envoy.core :as envoy]
             [clojure.tools.logging :as log]
