@@ -15,10 +15,10 @@
                  [tolitius/mount-up            "0.1.0-SNAPSHOT"]
                  [tolitius/envoy               "0.1.2-SNAPSHOT"]
                  [counsyl/vault-clj            "0.2.0"]
-                 [chazel                       "0.1.12-SNAPSHOT"]
+                 [chazel                       "0.1.16"]
                  [org.clojure/tools.logging    "0.3.1"]
 
-                 ;; dev / test 
+                 ;; dev / test
                  [adzerk/boot-cljs             "1.7.228-2"       :scope "test"]
                  [adzerk/boot-cljs-repl        "0.3.3"           :scope "test"]
                  [adzerk/boot-reload           "0.4.13"          :scope "test"]
@@ -50,7 +50,7 @@
 
 (deftask build []
   (comp (speak)
-        
+
         (cljs)
         ))
 
