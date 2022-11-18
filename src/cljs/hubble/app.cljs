@@ -75,3 +75,6 @@
     (rum/mount (hubble-store hubble) (u/by-id "store"))
     (rum/mount (hubble-camera hubble) (u/by-id "camera"))
     (rum/mount (hubble-mission hubble) (u/by-id "mission"))))
+
+;; TODO: calling it until boot-cljs' ":init-fns" ported to deps.edn
+(init)

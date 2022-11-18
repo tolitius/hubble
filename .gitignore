@@ -18,5 +18,8 @@ doo-index.html
 /.nrepl-history
 .cljs_rhino_repl/
 out/
+js/
 .nrepl-history
 .DS_Store
+.cpcache
+.rebel_readline_history

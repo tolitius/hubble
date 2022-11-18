@@ -87,6 +87,49 @@ In fact it does for many years now. Meet [SPIKE: Intelligent Scheduling of Hubbl
 
 Here are the [detailed instructions](https://www.dotkam.com/2017/01/10/hubble-space-mission-securely-configured/) on how to connect to and control the Hubble Telescope.
 
+### deps.edn
+
+> since this gem is from 2016, lots of things have changed, [boot](https://github.com/boot-clj/boot) got replaced with deps.edn, etc.
+
+in order to play with hubble via `deps.edn`:
+
+* make sure you have Consul running (can be started with [cault](https://github.com/tolitius/cault))
+* the rest will be done by [Makefile](Makefile)
+
+```clojure
+$ make repl
+
+clojure -M:with-ui   ;; compiles cljs => js before starting REPL
+
+nREPL server started on port 54960 on host localhost - nrepl://localhost:54960
+[Rebel readline] Type :repl/help for online help info
+=>
+```
+
+```clojure
+=> (require '[hubble.env :as env] '[hubble.app :as app])
+
+=> (env/init-consul)
+
+;; read config from resource: "config.edn"
+;; 00:32:09.457 [main] INFO  hubble.env - initializing Consul at http://localhost:8500/v1/kv
+
+=> (app/-main)
+
+;; 00:41:29.331 [main] INFO  mount-up.core - >> starting.. #'hubble.env/config
+;; read config from resource: "config.edn"
+;; 00:41:29.362 [main] INFO  mount-up.core - >> starting.. #'hubble.core/camera
+;; 00:41:29.362 [main] INFO  mount-up.core - >> starting.. #'hubble.core/store
+;; 00:41:29.362 [main] INFO  mount-up.core - >> starting.. #'hubble.core/mission
+;; 00:41:29.362 [main] INFO  mount-up.core - >> starting.. #'hubble.watch/consul-watcher
+;; 00:41:29.362 [main] INFO  hubble.watch - watching on http://localhost:8500/v1/kv/hubble
+;; 00:41:29.365 [main] INFO  mount-up.core - >> starting.. #'hubble.server/http-server
+```
+
+go to http://localhost:4242/
+
+great success.
+
 ## License
 
 Copyright © 2016 tolitius

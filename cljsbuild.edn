@@ -1,0 +1,6 @@
+{:main          "hubble.app"
+ :output-dir    "resources/js"
+ :output-to     "resources/js/app.js"
+ :source-map    "resources/js/app.js.map"
+ :optimizations :advanced
+ :pretty-print  true}
